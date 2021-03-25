@@ -1,4 +1,3 @@
-/*
 package ru.itis.springbootdemo.security.details;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +17,3 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return new UserDetailsImpl(usersRepository.findByEmail(username).orElseThrow(RuntimeException::new));
     }
 }
-
-
- */

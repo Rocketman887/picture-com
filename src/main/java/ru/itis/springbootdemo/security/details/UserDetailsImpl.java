@@ -1,4 +1,3 @@
-/*
 package ru.itis.springbootdemo.security.details;
 
 
@@ -62,5 +61,3 @@ public class UserDetailsImpl implements UserDetails {
     }
 
 }
-
- */
