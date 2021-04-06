@@ -1,4 +1,4 @@
-/*package ru.itis.springbootdemo.configurations;
+package ru.itis.springbootdemo.configurations;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -62,6 +62,3 @@ public class LocalizationConfig implements WebMvcConfigurer {
         return messageSource;
     }
 }
-
-
- */

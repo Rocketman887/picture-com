@@ -1,5 +1,3 @@
-
-/*
 package ru.itis.springbootdemo.dtos.forms;
 
 import com.sun.istack.NotNull;
@@ -35,5 +33,3 @@ public class ProfileEditForm {
     private String imagePath;
 
 }
-
- */
