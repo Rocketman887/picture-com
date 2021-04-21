@@ -15,8 +15,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class FileCreatorServiceImpl implements FileCreatorService {
 
-    @Autowired
-    FilesPathService filesPathService;
+    private final FilesPathService filesPathService;
 
     @Override
     public String createFile(String uploadPath, MultipartFile file) throws IOException {
@@ -26,7 +25,7 @@ public class FileCreatorServiceImpl implements FileCreatorService {
             uploadDirectory.mkdir();
         }
         String resultFileName = filesPathService.createPath(file.getOriginalFilename(),uploadPath);
-        file.transferTo(new File(uploadPath + "/" + resultFileName));
+        file.transferTo(new File(resultFileName));
         return resultFileName;
     }
 }

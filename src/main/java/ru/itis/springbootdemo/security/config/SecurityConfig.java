@@ -25,6 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private PasswordEncoder passwordEncoder;
 
     @Qualifier("customUserDetailsService")
+    @Autowired
     private UserDetailsService userDetailsService;
 
     @Autowired
@@ -34,23 +35,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http
-                .csrf()
-                .disable()
-                .sessionManagement()
-                .disable()
                 .authorizeRequests()
                 .antMatchers("/signUp").permitAll()
                 .antMatchers("/signIn").permitAll()
+                .antMatchers("/activate").permitAll()
                 .antMatchers("/profile").authenticated()
-                .antMatchers("/postImage").permitAll()
-                .antMatchers("/postImageSearch").permitAll()
+                .antMatchers("/editProfile").authenticated()
                 .antMatchers("/").permitAll()
                 .and()
                 .formLogin()
-                .loginPage("/signin")
+                .loginPage("/signIn")
                 .usernameParameter("email")
+                .passwordParameter("password")
                 .defaultSuccessUrl("/profile")
-                .failureUrl("/signin?error")
+                .failureUrl("/signIn")
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))

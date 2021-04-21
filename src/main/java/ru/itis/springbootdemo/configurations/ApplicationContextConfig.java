@@ -2,7 +2,7 @@ package ru.itis.springbootdemo.configurations;
 
 
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -15,7 +15,9 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import ru.itis.springbootdemo.dtos.mappers.UserFormMapper;
 import ru.itis.springbootdemo.services.implementations.AuditorAwareImpl;
 
 import java.util.HashMap;
@@ -31,6 +33,9 @@ import java.util.concurrent.Executors;
 public class ApplicationContextConfig implements WebMvcConfigurer {
     private final Environment environment;
 
+    @Value("${default.uploads}")
+    private String uploadPath;
+
 
     @Bean
     public PasswordEncoder encoder() {
@@ -43,26 +48,6 @@ public class ApplicationContextConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    @Primary
-    public JavaMailSender getJavaMailSender() {
-        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost("smtp.mail.ru");
-        mailSender.setPort(80);
-
-        mailSender.setUsername("artem.shabunin.2001@inbox.ru");
-        mailSender.setPassword("art98098908");
-
-        Properties props = mailSender.getJavaMailProperties();
-        props.put("mail.transport.protocol", "smtp");
-        props.put("mail.smtp.ssl.trust", "smtp.mail.ru");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.debug", "true");
-
-        return mailSender;
-    }
-
-    @Bean
     public Map<String, String> templateParameters() {
         Map<String, String> model = new HashMap<>();
         model.put("location", environment.getProperty("location"));
@@ -72,11 +57,18 @@ public class ApplicationContextConfig implements WebMvcConfigurer {
 
     @Bean
     public ExecutorService executorService() {
-        return Executors.newFixedThreadPool(12);
+        int i = Runtime.getRuntime().availableProcessors();
+        return Executors.newFixedThreadPool(i);
     }
 
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry){
+        registry.addResourceHandler("/img/**")
+                .addResourceLocations("file://" + uploadPath + "/");
     }
 }

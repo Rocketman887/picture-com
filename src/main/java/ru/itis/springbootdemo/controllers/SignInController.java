@@ -1,19 +1,22 @@
 package ru.itis.springbootdemo.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.itis.springbootdemo.services.interfacies.MailService;
-import ru.itis.springbootdemo.services.interfacies.SignInService;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.annotation.security.PermitAll;
 
 @Controller
 @RequiredArgsConstructor
 public class SignInController {
 
-    @Autowired
-    private SignInService signInService;
-
-    @Autowired
-    private MailService mailService;
+    @PermitAll
+    @GetMapping("/signIn")
+    public String getSignInPage(@RequestParam(value = "error", required = false) String error,
+                                Model model) {
+        return "signIn_page";
+    }
 }

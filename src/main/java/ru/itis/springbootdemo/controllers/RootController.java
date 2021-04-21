@@ -12,6 +12,7 @@ import javax.annotation.security.PermitAll;
 @RequestMapping("/")
 @RequiredArgsConstructor
 public class RootController {
+
     @PermitAll
     @GetMapping
     public String getRoot(Authentication authentication) {

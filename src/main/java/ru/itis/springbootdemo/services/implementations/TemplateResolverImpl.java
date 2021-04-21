@@ -15,9 +15,8 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 public class TemplateResolverImpl implements TemplateResolver {
-    @Autowired
-    private final Configuration configuration;
 
+    private final Configuration configuration;
 
     @Override
     public String process(String name, Map<String, String> root) {

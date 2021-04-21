@@ -22,7 +22,7 @@ public class ImagePostDTO {
     private String title;
 
     @NotNull
-    private String tag;
+    private String type;
 
     private String description;
 }

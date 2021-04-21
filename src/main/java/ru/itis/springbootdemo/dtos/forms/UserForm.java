@@ -16,14 +16,14 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 public class UserForm {
 
-    @Email(message = "{errors.wrong_email}")
+    @Email(message = "${errors.wrong_email}")
     private String email;
 
-    @Size(min = 2, message = "{errors.short_name}")
+    @Size(min = 2, message = "${errors.short_name}")
     private String name;
 
-    @NotBlank(message = "{error.null_email}")
-    @Size(min = 10, message = "{errors.short_password}")
+    @NotBlank(message = "${error.null_email}")
+    @Size(min = 10, message = "${errors.short_password}")
     private String password;
 
 

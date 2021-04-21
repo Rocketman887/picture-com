@@ -15,10 +15,6 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ImagePostForm {
-
-    @NotNull
-    private String owner;
-
     @NotNull
     private String imagePath;
 
@@ -26,7 +22,7 @@ public class ImagePostForm {
     private String title;
 
     @NotBlank(message = "{error.null_email}")
-    private String tag;
+    private String type;
 
     private String description;
 

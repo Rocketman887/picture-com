@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Data
@@ -21,15 +23,34 @@ public class ImagePost {
     private long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "tag", nullable = false)
-    private String tag;
+    @Column(name = "type", nullable = false)
+    private String type;
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "imagePath",nullable = false)
+    private String imagePath;
+
+    public static ImagePost from(ImagePost imagePost) {
+        return ImagePost.builder()
+                .id(imagePost.getId())
+                .title(imagePost.getTitle())
+                .type(imagePost.getType())
+                .description(imagePost.getDescription())
+                .imagePath(imagePost.getImagePath())
+                .build();
+    }
+
+    public static List<ImagePost> from(List<ImagePost> products) {
+        return products.stream()
+                .map(ImagePost::from)
+                .collect(Collectors.toList());
+    }
 }

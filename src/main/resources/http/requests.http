@@ -1,0 +1,10 @@
+##
+POST http://localhost:8080/imagePosts
+Content-Type: application/json
+
+{
+"title":"mycar",
+"type":"cars",
+"description":"my new car",
+"imagePath":"C:/Users/user1/IdeaProjects/picture-com/uploads/icon_profile.png"
+}
