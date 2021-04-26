@@ -1,5 +1,6 @@
 package ru.itis.springbootdemo.controllers;
 
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -43,14 +44,14 @@ public class ImagePostController {
     }
 
     @PreAuthorize("isAuthenticated()")
-    @PostMapping("/imagePosts/{id}")
+    @PostMapping("/imagePosts/update/{id}")
     public ResponseEntity<?> deleteImagePost(@PathVariable("id") Long id){
         imagePostsService.deleteImagePost(id);
         return ResponseEntity.ok().build();
     }
 
     @PreAuthorize("isAuthenticated()")
-    @PostMapping("/imagePosts/{id}")
+    @PostMapping("/imagePosts/delete/{id}")
     public ResponseEntity<ImagePost> updateImagePost(@PathVariable("id") Long id, @Valid @RequestBody ImagePostForm imagePostForm) {
         return ResponseEntity.ok(imagePostsService.updateImagePost(id,imagePostForm));
     }

@@ -11,7 +11,6 @@ import ru.itis.springbootdemo.dtos.forms.UserForm;
 import ru.itis.springbootdemo.models.User;
 
 @Mapper(componentModel="spring")
-
 public interface UserDTOMapper {
     UserDTOMapper MAPPER = Mappers.getMapper(UserDTOMapper.class);
 
