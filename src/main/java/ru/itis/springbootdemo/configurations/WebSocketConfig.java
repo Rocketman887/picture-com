@@ -11,6 +11,7 @@ import ru.itis.springbootdemo.handlers.WebSocketMessageHandler;
 @Configuration
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
+
     @Autowired
     private WebSocketMessageHandler messageHandler;
 

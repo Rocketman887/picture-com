@@ -26,33 +26,21 @@ public class ImagePostController {
     private final UsersDTOService usersDTOService;
 
     @PreAuthorize("permitAll()")
+    @GetMapping("/imagePosts")
+    public String getImagePostPage() {
+        return "imagePosts_page";
+    }
+
+    @PreAuthorize("permitAll()")
     @GetMapping("/imagePosts/{id}")
     public ResponseEntity<ImagePost> getImagePost(@PathVariable("id") Long id) {
         return ResponseEntity.ok(imagePostsService.getImagePost(id));
     }
+
     @PreAuthorize("permitAll()")
     @GetMapping("/imagePosts")
     public ResponseEntity<Page<ImagePost>> getAllImagePosts(@PageableDefault(size = 20) Pageable pageable) {
         return ResponseEntity.ok(imagePostsService.getAllImagePosts(pageable));
     }
-    @PreAuthorize("isAuthenticated()")
-    @PostMapping("/imagePosts")
-    public ResponseEntity<ImagePost> createImagePost(@Valid @RequestBody ImagePostForm imagePostForm,
-                                                     @AuthenticationPrincipal UserDetailsImpl security) {
-        return ResponseEntity.ok(imagePostsService.createImagePost(imagePostForm,
-                usersDTOService.userToDto(security.getUser())));
-    }
 
-    @PreAuthorize("isAuthenticated()")
-    @PostMapping("/imagePosts/update/{id}")
-    public ResponseEntity<?> deleteImagePost(@PathVariable("id") Long id){
-        imagePostsService.deleteImagePost(id);
-        return ResponseEntity.ok().build();
-    }
-
-    @PreAuthorize("isAuthenticated()")
-    @PostMapping("/imagePosts/delete/{id}")
-    public ResponseEntity<ImagePost> updateImagePost(@PathVariable("id") Long id, @Valid @RequestBody ImagePostForm imagePostForm) {
-        return ResponseEntity.ok(imagePostsService.updateImagePost(id,imagePostForm));
-    }
 }

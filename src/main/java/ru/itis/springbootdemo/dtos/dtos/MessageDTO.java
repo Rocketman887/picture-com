@@ -18,7 +18,6 @@ public class MessageDTO {
 
     @NotNull
     private String text;
-
     @NotNull
     private String sender;
 

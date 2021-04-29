@@ -26,6 +26,7 @@ ${_csrf.token}
     <@spring.bind "userForm"/>
     <form action="/signUp" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+        <@spring.message. />
         <@spring.formInput "userForm.email" "class = \"login_input\" name=\"email\" placeholder = \"email\"" "email" />
         <@spring.showErrors "<br>" "error" />
         <@spring.formInput "userForm.name" "class = \"login_input\" name=\"name\" placeholder = \"name\"" "text" />

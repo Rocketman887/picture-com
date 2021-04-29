@@ -13,17 +13,18 @@
     <script>
         let webSocket;
         function connect() {
-            webSocket = new WebSocket("ws://localhost/chat");
+            webSocket = new WebSocket("ws://localhost:8080/chat");
+
             webSocket.onmessage = function receiveMessage(response) {
                 let json = JSON.parse(response['data']);
-                console.log(json);
                 $('#messagesList').first().after("<li>" + json['from'] + ": " + json['text'] + "</li>");
             }
         }
 
-        function sendMessage(text, pageId) {
+        function sendMessage(text, id) {
             let message = {
                 "text" : text,
+                "from" : id,
             };
             webSocket.send(JSON.stringify(message));
         }
@@ -34,7 +35,7 @@
 <div>
     <label for="message">Сообщение: </label>
     <input name="message" id="message" placeholder="message">
-    <button onclick="sendMessage($('#message').val())">Отправить</button>
+    <button onclick="sendMessage($('#message').val()),${id}">Отправить</button>
     <h3>
         Список сообщений
     </h3>

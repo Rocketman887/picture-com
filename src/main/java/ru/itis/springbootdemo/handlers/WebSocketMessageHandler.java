@@ -2,6 +2,7 @@ package ru.itis.springbootdemo.handlers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -15,9 +16,9 @@ import java.util.Map;
 
 @Component
 @EnableWebSocket
-@RequiredArgsConstructor
 public class WebSocketMessageHandler extends TextWebSocketHandler {
 
+    @Autowired
     private ObjectMapper objectMapper;
 
     private MessagesRepository messagesRepository;

@@ -49,7 +49,7 @@
         var indexed_array = {};
 
         $.map(unindexed_array, function(n, i){
-            indexed_array[n['name']] = n['value'];
+            indexed_array[n['title']] = n['value'];
         });
 
         return indexed_array;
@@ -59,7 +59,7 @@
 
 <form id = "searchForm" action="/search">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-    <input class = "header_input" type="text" name="title" id="title" placeholder="Insert the title or tag"/>
+    <input class = "header_input" type="text" name="title" id="title" placeholder="Insert the title of image"/>
     <button type="button" onclick="search()">Search</button>
 </form>
 
