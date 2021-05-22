@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.itis.springbootdemo.dtos.dtos.UserDTO;
 import ru.itis.springbootdemo.dtos.forms.ProfileNameEditForm;
 import ru.itis.springbootdemo.dtos.forms.ProfilePasswordEditForm;
@@ -80,6 +81,14 @@ public class EditProfileController {
         UserDTO userDTO = usersDTOService.userToDto(security.getUser());
         profileService.editImage(userDTO,file);
         model.addAttribute("message", "Your avatar was successfully updated!");
-        return "redirect:/editProfile";
+        return "redirect:/profile";
+    }
+    @PostMapping("/editProfile/deleteImage")
+    public String deleteImageProfile(@AuthenticationPrincipal UserDetailsImpl security,
+                                     RedirectAttributes redirectAttributes){
+        UserDTO userDTO = usersDTOService.userToDto(security.getUser());
+        profileService.deleteImage(userDTO);
+        redirectAttributes.addFlashAttribute("message","Your image avatar was successfully deleted!");
+        return "redirect:/profile";
     }
 }

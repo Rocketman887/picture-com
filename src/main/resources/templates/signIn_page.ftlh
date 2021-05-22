@@ -17,17 +17,17 @@
 <body>
 <@header/>
 <div class="signIn_layout">
-    <div class="signIn_title"></div>
+    <div class="signIn_title"><@spring.message 'signIn_page.title'/></div>
     <form action="/signIn" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-        <input id="login" type="email" minlength="5" name="email" placeholder="email" class="login_input"/>
-        <input id = "password" type="password" name="password" minlength="5" placeholder="password" class="password_input"/>
+        <input id="login" type="email" minlength="5" name="email" placeholder="<@spring.message 'signIn_page.name'/>" class="login_input"/>
+        <input id = "password" type="password" name="password" minlength="5" placeholder="<@spring.message 'signIn_page.password'/>" class="password_input"/>
         <label>
-            <input type="checkbox" name="remember-me">remember me
+            <input type="checkbox" name="remember-me"><@spring.message 'remember.me'/>
         </label>
         <input type="submit" value="signIn" class="signInSubmit"/>
         <a href="http://localhost:8080/signUp">
-            Don't have an account yet? Sign up!
+            <@spring.message 'signIn_page.message'/>
         </a>
     </form>
 </div>

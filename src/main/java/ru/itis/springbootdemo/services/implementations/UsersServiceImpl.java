@@ -44,17 +44,4 @@ public class UsersServiceImpl implements UsersService {
     public List<User> getAllUsers() {
         return usersRepository.findAll();
     }
-
-    @Override
-    public boolean activateUser(String code) {
-        Optional<User> userCandidate = usersRepository.findByCurrentConfirmationCode(code);
-        if(!userCandidate.isPresent()){
-            return false;
-        }
-
-        User newUser = userCandidate.get();
-        newUser.setMailProved(true);
-        usersRepository.save(newUser);
-        return true;
-    }
 }

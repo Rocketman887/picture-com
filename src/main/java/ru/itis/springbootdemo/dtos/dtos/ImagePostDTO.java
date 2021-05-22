@@ -13,7 +13,10 @@ import lombok.NoArgsConstructor;
 public class ImagePostDTO {
 
     @NotNull
-    private String owner;
+    private Long id;
+
+    @NotNull
+    private Long ownerId;
 
     @NotNull
     private String imagePath;
@@ -23,6 +26,8 @@ public class ImagePostDTO {
 
     @NotNull
     private String type;
+
+    private String tag;
 
     private String description;
 }

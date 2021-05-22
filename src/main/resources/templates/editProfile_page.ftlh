@@ -17,43 +17,45 @@
 <body>
 
 <@header/>
-EDIT NAME
+<@spring.message 'editProfile_page.name'/>
 <@spring.bind "nameEditForm"/>
 <form method="post" action="/editProfile/name">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <@spring.formInput "nameEditForm.name" "class = \"password_input\" name=\"text\"  placeholder = \"name\"" />
     <@spring.formInput "nameEditForm.password" "class = \"password_input\" name=\"password\"  placeholder = \"password\"" />
     <@spring.showErrors "<br>" "error" />
-    <input type="submit" value="ENTER"/>
+    <input type="submit" value="search_button"/>
 </form>
 
-EDIT PASSWORD
+<@spring.message 'editProfile_page.password'/>
 <@spring.bind "passwordEditForm"/>
 <form method="post" action="/editProfile/password">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-    <@spring.formInput "passwordEditForm.oldPassword" "class = \"password_input\" name=\"password\"  placeholder = \"password\"" />
-    <@spring.formInput "passwordEditForm.newPassword" "class = \"password_input\" name=\"password\"  placeholder = \"password\"" />
-    <@spring.formInput "passwordEditForm.repeatNewPassword" "class = \"password_input\" name=\"password\"  placeholder = \"password\"" />
+    <@spring.formInput "passwordEditForm.oldPassword" "class = \"password_input\" name=\"password\"  placeholder = \"old password\"" />
+    <@spring.formInput "passwordEditForm.newPassword" "class = \"password_input\" name=\"password\"  placeholder = \"new password\"" />
+    <@spring.formInput "passwordEditForm.repeatNewPassword" "class = \"password_input\" name=\"password\"  placeholder = \"repeat new password\"" />
     <@spring.showErrors "<br>" "error" />
-    <input type="submit" value="ENTER"/>
+    <input type="submit" value="search_button"/>
 </form>
 
-EDIT IMAGE
-<div class="prof">
+<@spring.message 'editProfile_page.image'/><div class="prof">
     <form method="post" enctype="multipart/form-data" action="/editProfile/image">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-        <div class="image_box">
-                <div class="example-1">
-                    <div class="form-group">
-                        <label class="label">
-                            <i class="material-icons">attach</i>
-                            <span class="title">Добавить фото</span>
+        <div>
+                <div >
+                    <div >
+                        <label>
+                            <span>Add image</span>
                             <input type="file" name="file">
                         </label>
                     </div>
                 </div>
-                <input class="image_button" type="submit" value="ENTER"/>
+                <input class="search_button" type="submit" value="Edit"/>
         </div>
+    </form>
+    <form method="post" action="/editProfile/deleteImage">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+        <input class="search_button" type="submit" value="Delete profile image"/>
     </form>
 </body>
 </html>

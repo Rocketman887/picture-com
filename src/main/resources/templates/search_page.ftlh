@@ -9,59 +9,37 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>search</title>
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <@style/>
 </head>
 <@header/>
 <body>
-
-<script type="application/javascript">
-    function search() {
-        let token = $("meta[name='_csrf']").attr("content");
-        let header = $("meta[name='_csrf_header']").attr("content");
-        let form = $("#postSearchForm")[0];
-        let data = getFormData($("#postSearchForm"));
-        console.log(JSON.stringify(data));
-
-        $.ajax({
-            type: "POST",
-            url: form.action,
-            beforeSend: function (request) {
-                request.setRequestHeader(header, token);
-            },
-            data: JSON.stringify(data),
-            processData: false,
-            cache: false,
-            contentType: 'application/json',
-            timeout: 600000,
-            success: function (data) {
-                var a = JSON.stringify(data);
-                $('#result').text(a);
-            },
-            error: function (err) {
-                console.log(JSON.stringify(err));
-                alert(JSON.stringify(err));
-            }
-        });
-    }
-    function getFormData($form){
-        var unindexed_array = $form.serializeArray();
-        var indexed_array = {};
-
-        $.map(unindexed_array, function(n, i){
-            indexed_array[n['title']] = n['value'];
-        });
-
-        return indexed_array;
-    }
-    search()
-</script>
-
-<form id = "searchForm" action="/search">
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+<div class="search_wrapper">
+<h1 class="search_head_wrapper">Search by title:</h1>
+<form id = "title" action="/searchByTitle">
     <input class = "header_input" type="text" name="title" id="title" placeholder="Insert the title of image"/>
-    <button type="button" onclick="search()">Search</button>
+    <input class="search_button" id = "search_submit"type="submit" value="search by title"/>
 </form>
+<h1 class="search_head_wrapper">Search by tag:</h1>
+<form id = "tag" action="/searchByTag">
+    <input class = "header_input" type="text" name="tag" id="tag" placeholder="Insert the tag of image"/>
+    <input class="search_button" id = "search_submit"type="submit" value="search by tag"/>
+</form>
+<h1 class="search_head_wrapper">Search by category:</h1>
+<form id = "type" action="/searchByType">
+    <label  class="search_category_wrapper" for = "type">Category</label>
+    <select id="type" name="type">
+        <option value="all">All</option>
+        <option value="nature">Nature</option>
+        <option value="films">Films</option>
+        <option value="abstractions">Abstractions</option>
+        <option value="cars">Cars</option>
+        <option value="sport">Sport</option>
+        <option value="sport">Other</option>
+    </select>
+    <input class="search_button" id = "search_submit" type="submit" value="search by category"/>
+</form>
+
+</div>
 
 </body>
 </html>

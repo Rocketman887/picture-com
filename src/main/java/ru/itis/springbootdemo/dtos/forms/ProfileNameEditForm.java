@@ -15,10 +15,10 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProfileNameEditForm {
-    @Size(min = 2, message = "{errors.short_name}")
+    @Size(min = 2, message = "errors.short_name")
     private String name;
 
-    @Size(min = 10, message = "{errors.short_password}")
+    @Size(min = 10, message = "errors.short_password")
     private String password;
 
 }

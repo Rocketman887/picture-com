@@ -18,11 +18,13 @@ public class ImagePostForm {
     @NotNull
     private String imagePath;
 
-    @NotBlank(message = "{error.null_email}")
+    @NotBlank(message = "error.null_email")
     private String title;
 
-    @NotBlank(message = "{error.null_email}")
     private String type;
+
+    @NotBlank(message = "error.null_title")
+    private String tag;
 
     private String description;
 

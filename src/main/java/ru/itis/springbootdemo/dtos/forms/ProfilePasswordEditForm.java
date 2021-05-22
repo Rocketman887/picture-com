@@ -12,10 +12,12 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProfilePasswordEditForm {
-    @Size(min = 10, message = "{errors.short_password}")
+    @Size(min = 10, message = "errors.short_password")
     private String oldPassword;
 
+    @Size(min = 10, message = "errors.short_password")
     private String newPassword;
 
+    @Size(min = 10, message = "errors.short_password")
     private String repeatNewPassword;
 }

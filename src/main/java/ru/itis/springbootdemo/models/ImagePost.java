@@ -32,6 +32,9 @@ public class ImagePost {
     @Column(name = "type", nullable = false)
     private String type;
 
+    @Column(name = "tag")
+    private String tag;
+
     @Column(name = "description")
     private String description;
 

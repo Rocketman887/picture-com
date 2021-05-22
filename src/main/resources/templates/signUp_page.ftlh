@@ -16,29 +16,26 @@
 </head>
 <body>
 <#if message?has_content>
-    <p class="message" ><font color="red"><b>${message}</b></font></p>
+    <div class = "header_basic_image">${message}</div>
 </#if>
 <@header/>
-${_csrf.parameterName}
-${_csrf.token}
 <div class="signUp_layout">
-    <div class="signUp_title"></div>
+    <div class="signUp_title"><@spring.message 'signUp_page.title'/></div>
     <@spring.bind "userForm"/>
     <form action="/signUp" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-        <@spring.message. />
         <@spring.formInput "userForm.email" "class = \"login_input\" name=\"email\" placeholder = \"email\"" "email" />
         <@spring.showErrors "<br>" "error" />
         <@spring.formInput "userForm.name" "class = \"login_input\" name=\"name\" placeholder = \"name\"" "text" />
         <@spring.showErrors "<br>" "error" />
-        <@spring.formInput "userForm.password" "class = \"password_input\" name=\"password\"  placeholder = \"password\"" />
+        <@spring.formInput "userForm.password" "class = \"password_input\" name=\"password\"  placeholder =\"password\"" />
         <@spring.showErrors "<br>" "error" />
         <label>
-            <input type="checkbox" name="remember-me">remember me
+            <input type="checkbox" name="remember-me"><@spring.message 'remember.me'/>
         </label>
         <input type="submit" value="signUp" class="signInSubmit"/>
         <a href="http://localhost:8080/signIn">
-            Already have an account? Sign In!
+            <@spring.message 'signUp_page.message'/>
         </a>
     </form>
 </div>

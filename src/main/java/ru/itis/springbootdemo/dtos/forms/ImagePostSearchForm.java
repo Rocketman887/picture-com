@@ -10,6 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ImagePostSearchForm {
-    private String text;
+    private String title;
+    private String tag;
+    private String type;
     private int page;
+    private int size;
 }

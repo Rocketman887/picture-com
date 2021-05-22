@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.itis.springbootdemo.dtos.dtos.UserDTO;
 import ru.itis.springbootdemo.dtos.forms.ProfileNameEditForm;
 import ru.itis.springbootdemo.dtos.forms.ProfilePasswordEditForm;
+import ru.itis.springbootdemo.models.User;
 import ru.itis.springbootdemo.security.details.UserDetailsImpl;
 import ru.itis.springbootdemo.services.interfacies.ProfileService;
 import ru.itis.springbootdemo.services.interfacies.UsersDTOService;
@@ -28,13 +29,17 @@ import java.io.IOException;
 public class ProfileController {
 
     private final UsersDTOService usersDTOService;
+    private final UsersService usersService;
 
     @GetMapping("/profile")
     public String getProfilePage(@AuthenticationPrincipal UserDetailsImpl security,
                                  Model model) {
-        UserDTO userDTO = usersDTOService.userToDto(security.getUser());
-        model.addAttribute("userName", userDTO.getName());
-        model.addAttribute("imagePath", userDTO.getImagePath());
+        if(security.getUser().getRole()== User.Role.ADMIN){
+            model.addAttribute("admin","admin");
+        }
+        User user = usersService.getUserById(security.getId());
+        UserDTO userDTO = usersDTOService.userToDto(user);
+        model.addAttribute("userDTO", userDTO);
         return "profile_page";
     }
 

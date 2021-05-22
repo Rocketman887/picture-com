@@ -12,5 +12,4 @@ public interface UsersService {
     boolean existByEmail(String email);
     List<User> getAllUsers();
     void saveUser(User user);
-     boolean activateUser(String code);
 }

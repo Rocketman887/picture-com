@@ -11,4 +11,5 @@ public interface ProfileService {
     boolean editName(ProfileNameEditForm form, UserDTO userDTO);
     boolean editPassword(ProfilePasswordEditForm form, UserDTO userDTO);
     void editImage(UserDTO userDTO, MultipartFile file) throws IOException;
+    void deleteImage(UserDTO userDTO);
 }

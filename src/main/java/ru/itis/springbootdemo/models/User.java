@@ -26,9 +26,6 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "phoneNumber")
-    private String phoneNumber;
-
     @Column(name = "password", nullable = false)
     private String hashPassword;
 
@@ -37,9 +34,6 @@ public class User {
 
     @Column(columnDefinition = "boolean default false")
     private boolean mailProved;
-
-    @Column(columnDefinition = "boolean default false")
-    private boolean phoneProved;
 
     @Enumerated(value = EnumType.STRING)
     private State state;
@@ -62,10 +56,6 @@ public class User {
 
     public boolean isMailProved(){
         return this.mailProved;
-    }
-
-    public boolean isPhoneProved(){
-        return this.phoneProved;
     }
 
     public boolean isActive() {

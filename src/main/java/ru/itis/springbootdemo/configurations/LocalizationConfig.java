@@ -54,9 +54,8 @@ public class LocalizationConfig implements WebMvcConfigurer {
     @Bean
     public MessageSource messageSource(){
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("messages/messages");
+        messageSource.setBasename("classpath:static/messages/messages");
         messageSource.setDefaultEncoding("UTF-8");
-        messageSource.setDefaultLocale(Locale.ENGLISH);
         return messageSource;
     }
 }

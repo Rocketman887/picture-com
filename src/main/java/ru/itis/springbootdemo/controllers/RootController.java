@@ -15,11 +15,7 @@ public class RootController {
 
     @PermitAll
     @GetMapping
-    public String getRoot(Authentication authentication) {
-        if (authentication != null) {
-            return "redirect:/profile";
-        } else {
-            return "redirect:/signIn";
-        }
+    public String getRoot() {
+        return "redirect:/imagePosts/all";
     }
 }

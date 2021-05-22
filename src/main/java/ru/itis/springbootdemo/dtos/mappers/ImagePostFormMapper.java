@@ -17,6 +17,7 @@ public interface ImagePostFormMapper {
     @Mappings({
             @Mapping(target = "title", source = "form.title"),
             @Mapping(target = "type", source = "form.type"),
+            @Mapping(target = "tag", source = "form.tag"),
             @Mapping(target = "description",source = "form.description"),
             @Mapping(target = "imagePath",source = "form.imagePath")
     })
